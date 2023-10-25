@@ -18,30 +18,30 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(value = { NotFoundException.class })
-    public ResponseEntity<Object> notFoundExceptionHandler(Exception ex, WebRequest request) {
-        log.error(ex.getMessage());
+	@ExceptionHandler(value = { NotFoundException.class })
+	public ResponseEntity<Object> notFoundExceptionHandler(Exception ex, WebRequest request) {
+		log.error(ex.getMessage());
 
-        return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
-    }
+		return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
+	}
 
-    @ExceptionHandler(value = { DateTimeParseException.class, MissingServletRequestParameterException.class })
-    public ResponseEntity<ErrorMessage> badRequestExceptionHandler(Exception ex, WebRequest request) {
-        log.error(ex.getMessage());
+	@ExceptionHandler(value = { DateTimeParseException.class, MissingServletRequestParameterException.class })
+	public ResponseEntity<ErrorMessage> badRequestExceptionHandler(Exception ex, WebRequest request) {
+		log.error(ex.getMessage());
 
-        return new ResponseEntity<ErrorMessage>(new ErrorMessage(
-                HttpStatus.BAD_REQUEST.value(),
-                LocalDateTime.now(),
-                ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
+		return new ResponseEntity<ErrorMessage>(new ErrorMessage(
+				HttpStatus.BAD_REQUEST.value(),
+				LocalDateTime.now(),
+				ex.getMessage()), HttpStatus.BAD_REQUEST);
+	}
 
-    @ExceptionHandler(value = { Exception.class })
-    public ResponseEntity<ErrorMessage> globalExceptionHandler(Exception ex, WebRequest request) {
-        log.error(ex.getMessage());
+	@ExceptionHandler(value = { Exception.class })
+	public ResponseEntity<ErrorMessage> globalExceptionHandler(Exception ex, WebRequest request) {
+		log.error(ex.getMessage());
 
-        return new ResponseEntity<ErrorMessage>(new ErrorMessage(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                LocalDateTime.now(),
-                ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+		return new ResponseEntity<ErrorMessage>(new ErrorMessage(
+				HttpStatus.INTERNAL_SERVER_ERROR.value(),
+				LocalDateTime.now(),
+				ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

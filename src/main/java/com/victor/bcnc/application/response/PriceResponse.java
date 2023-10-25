@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import java.util.Currency;
 
 public record PriceResponse(
-                Integer brandID,
-                LocalDateTime startDate,
-                LocalDateTime endDate,
-                Integer productId,
-                BigDecimal price,
-                Currency curr) {
+		Integer brandID,
+		LocalDateTime startDate,
+		LocalDateTime endDate,
+		Integer productId,
+		BigDecimal price,
+		Currency curr) {
 
 }

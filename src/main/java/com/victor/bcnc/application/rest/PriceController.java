@@ -18,34 +18,34 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class PriceController {
 
-    private final PriceService priceService;
+	private final PriceService priceService;
 
-    public PriceController(PriceService priceService) {
-        this.priceService = priceService;
-    }
+	public PriceController(PriceService priceService) {
+		this.priceService = priceService;
+	}
 
-    @GetMapping
-    public PriceResponse getPrice(@RequestParam String date, @RequestParam Integer productID,
-            @RequestParam Integer brandID) throws NotFoundException {
+	@GetMapping
+	public PriceResponse getPrice(@RequestParam String date, @RequestParam Integer productID,
+			@RequestParam Integer brandID) throws NotFoundException {
 
-        log.info(String.format("obtaining price with parameters:\n%s", Map.of(
-                "date", date,
-                "productID", productID,
-                "brandID", brandID).toString()));
+		log.info(String.format("obtaining price with parameters:\n%s", Map.of(
+				"date", date,
+				"productID", productID,
+				"brandID", brandID).toString()));
 
-        var price = this.priceService.getPrice(date, productID, brandID);
+		var price = this.priceService.getPrice(date, productID, brandID);
 
-        if (price == null) {
-            throw new NotFoundException();
-        }
+		if (price == null) {
+			throw new NotFoundException();
+		}
 
-        var response = new PriceResponse(price.brandID(), price.startDate(), price.endDate(), price.productID(),
-                price.price(),
-                price.curr());
+		var response = new PriceResponse(price.brandID(), price.startDate(), price.endDate(), price.productID(),
+				price.price(),
+				price.currency());
 
-        log.info(String.format("price successfully obtained:\n%s", response.toString()));
+		log.info(String.format("price successfully obtained:\n%s", response.toString()));
 
-        return response;
-    }
+		return response;
+	}
 
 }

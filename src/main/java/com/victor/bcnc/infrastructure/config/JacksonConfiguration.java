@@ -12,16 +12,16 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 @Configuration
 public class JacksonConfiguration {
 
-    @Bean
-    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+	@Bean
+	public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
 
-        return builder -> {
+		return builder -> {
 
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-            builder.deserializers(new LocalDateTimeDeserializer(dateTimeFormatter));
+			builder.deserializers(new LocalDateTimeDeserializer(dateTimeFormatter));
 
-            builder.serializers(new LocalDateTimeSerializer(dateTimeFormatter));
-        };
-    }
+			builder.serializers(new LocalDateTimeSerializer(dateTimeFormatter));
+		};
+	}
 }

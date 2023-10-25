@@ -8,12 +8,12 @@ import java.util.Currency;
  * Price record
  */
 public record Price(
-        Integer brandID,
-        LocalDateTime startDate,
-        LocalDateTime endDate,
-        Integer priceList,
-        Integer productID,
-        Integer priority,
-        BigDecimal price,
-        Currency curr) {
+		Integer brandID,
+		LocalDateTime startDate,
+		LocalDateTime endDate,
+		Integer priceList,
+		Integer productID,
+		Integer priority,
+		BigDecimal price,
+		Currency currency) {
 }
