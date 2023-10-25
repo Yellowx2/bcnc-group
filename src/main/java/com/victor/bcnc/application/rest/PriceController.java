@@ -24,6 +24,15 @@ public class PriceController {
 		this.priceService = priceService;
 	}
 
+	/**
+	 * Retrieves the price of a product in a specific date
+	 * 
+	 * @param date      Date and time of the product price using
+	 *                  'yyyy-MM-dd HH:mm:ss' format
+	 * @param productID Numeric ID of a product
+	 * @param brandID   Numeric ID of a brand
+	 * @return PriceResponse Product price information
+	 */
 	@GetMapping
 	public PriceResponse getPrice(@RequestParam String date, @RequestParam Integer productID,
 			@RequestParam Integer brandID) throws NotFoundException {

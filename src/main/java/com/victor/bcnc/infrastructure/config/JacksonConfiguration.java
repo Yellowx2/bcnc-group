@@ -12,6 +12,11 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 @Configuration
 public class JacksonConfiguration {
 
+	/**
+	 * JSON object mapper configuration
+	 * 
+	 * @return Jackson2ObjectMapperBuilderCustomizer
+	 */
 	@Bean
 	public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
 

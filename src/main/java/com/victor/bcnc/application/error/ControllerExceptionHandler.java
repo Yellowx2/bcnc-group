@@ -18,6 +18,13 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ControllerExceptionHandler {
 
+	/**
+	 * Handles a not found item
+	 * 
+	 * @param ex
+	 * @param request
+	 * @return ResponseEntity<Object> empty response
+	 */
 	@ExceptionHandler(value = { NotFoundException.class })
 	public ResponseEntity<Object> notFoundExceptionHandler(Exception ex, WebRequest request) {
 		log.error(ex.getMessage());
@@ -25,6 +32,13 @@ public class ControllerExceptionHandler {
 		return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
 	}
 
+	/**
+	 * Handles errors in requests
+	 * 
+	 * @param ex
+	 * @param request
+	 * @return ResponseEntity<ErrorMessage> JSON error message
+	 */
 	@ExceptionHandler(value = { DateTimeParseException.class, MissingServletRequestParameterException.class })
 	public ResponseEntity<ErrorMessage> badRequestExceptionHandler(Exception ex, WebRequest request) {
 		log.error(ex.getMessage());
@@ -35,6 +49,13 @@ public class ControllerExceptionHandler {
 				ex.getMessage()), HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * Default handler. Always returns Internal Server Error
+	 * 
+	 * @param ex
+	 * @param request
+	 * @return ResponseEntity<ErrorMessage>
+	 */
 	@ExceptionHandler(value = { Exception.class })
 	public ResponseEntity<ErrorMessage> globalExceptionHandler(Exception ex, WebRequest request) {
 		log.error(ex.getMessage());
