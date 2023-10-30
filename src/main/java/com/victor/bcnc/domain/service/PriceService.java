@@ -1,5 +1,6 @@
 package com.victor.bcnc.domain.service;
 
+import com.victor.bcnc.application.error.exceptions.NotFoundException;
 import com.victor.bcnc.domain.Price;
 
 public interface PriceService {
@@ -11,6 +12,10 @@ public interface PriceService {
 	 * @param productID
 	 * @param brandID
 	 * @return Price
+	 * 
+	 * @throws NotFoundException
+	 * @throws IllegalArgumentException
 	 */
-	public Price getPrice(String date, Integer productID, Integer brandID);
+	public Price getPrice(String date, Integer productID, Integer brandID)
+			throws NotFoundException, IllegalArgumentException;
 }
