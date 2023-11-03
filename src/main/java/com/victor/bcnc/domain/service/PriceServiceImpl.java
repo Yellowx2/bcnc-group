@@ -22,6 +22,7 @@ public class PriceServiceImpl implements PriceService {
 	@Override
 	public Price getPrice(String date, Integer productID, Integer brandID)
 			throws NotFoundException, IllegalArgumentException {
+
 		var localDate = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
 		validateInput(localDate, productID, brandID);
@@ -31,9 +32,6 @@ public class PriceServiceImpl implements PriceService {
 	}
 
 	private void validateInput(LocalDateTime date, Integer productID, Integer brandID) throws IllegalArgumentException {
-		if (date.isAfter(LocalDateTime.now().plusYears(1)) || date.isBefore(LocalDateTime.now().minusYears(1))) {
-			throw new IllegalArgumentException("date must be within a 1 year range");
-		}
 
 		if (productID < 1) {
 			throw new IllegalArgumentException("product ID must be positive");

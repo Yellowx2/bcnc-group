@@ -28,24 +28,6 @@ public class PriceServiceImplTest {
     private static final Integer brandID = 1;
 
     @Test
-    public void dateAboveOneYearRangeThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            priceService.getPrice(
-                    LocalDateTime.now().plusYears(2).format(formatter),
-                    productID, brandID);
-        });
-    }
-
-    @Test
-    public void dateBelowOneYearRangeThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            priceService.getPrice(
-                    LocalDateTime.now().minusYears(2).format(formatter),
-                    productID, brandID);
-        });
-    }
-
-    @Test
     public void productIDBelowZeroThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             priceService.getPrice(date, -1, brandID);
